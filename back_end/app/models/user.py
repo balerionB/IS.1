@@ -67,3 +67,28 @@ class User(db.Model):
         db.DateTime,
         default=datetime.utcnow
     )
+    def set_password(self, password):
+        """
+        Converts plain text password
+        into secure hash.
+        """
+
+        self.password_hash = bcrypt.hashpw(
+            password.encode("utf-8"),
+            bcrypt.gensalt()
+        ).decode("utf-8")
+
+
+    def check_password(self, password):
+        """
+        Compares entered password
+        with stored hash.
+        """
+
+        return bcrypt.checkpw(
+            password.encode("utf-8"),
+            self.password_hash.encode("utf-8")
+        )
+
+# Used for password hashing.
+import bcrypt

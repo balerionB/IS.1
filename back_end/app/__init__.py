@@ -26,6 +26,11 @@ def create_app():
 
     # Initialize mail service.
     mail.init_app(app)
+    app.register_blueprint(
+        auth_bp,
+        url_prefix="/api/auth"
+    )
 
     # Return configured application.
     return app
+from app.auth.routes import auth_bp
