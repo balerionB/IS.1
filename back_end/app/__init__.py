@@ -29,8 +29,16 @@ def create_app():
     app.register_blueprint(
         auth_bp,
         url_prefix="/api/auth"
+
+    )
+    app.register_blueprint(
+        integration_bp,
+        url_prefix="/api/integrations"
     )
 
     # Return configured application.
     return app
 from app.auth.routes import auth_bp
+from app.integrations.routes import (
+    integration_bp
+)
