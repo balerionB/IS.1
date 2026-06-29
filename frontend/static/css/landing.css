@@ -1,0 +1,58 @@
+/* =====================================
+Landing Page Styles
+===================================== */
+
+.hero-section{
+
+    min-height:75vh;
+
+    display:flex;
+
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #F5F7FA,
+        #FFFFFF
+    );
+
+}
+
+.hero-section h1{
+
+    font-weight:700;
+
+}
+
+.hero-section img{
+
+    max-height:500px;
+
+    animation:float 5s ease-in-out infinite;
+
+}
+
+/* Floating illustration */
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}

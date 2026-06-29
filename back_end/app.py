@@ -12,3 +12,9 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
+from routes.analytics import analytics
+
+app.register_blueprint(
+    analytics,
+    url_prefix="/analytics"
+)

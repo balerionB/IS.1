@@ -1,0 +1,83 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+
+County Dashboard
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+<div class="mb-4">
+
+<h2>
+
+County Operations Dashboard
+
+</h2>
+
+<p class="text-muted">
+
+Monitor workloads and departmental performance.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-lg-3">
+
+{{ stats_card(
+"Assigned Requests",
+dashboard.assigned,
+"bi bi-folder-fill"
+) }}
+
+</div>
+
+<div class="col-lg-3">
+
+{{ stats_card(
+"Pending",
+dashboard.pending,
+"bi bi-hourglass-split"
+) }}
+
+</div>
+
+<div class="col-lg-3">
+
+{{ stats_card(
+"Resolved Today",
+dashboard.resolved_today,
+"bi bi-check-circle"
+) }}
+
+</div>
+
+<div class="col-lg-3">
+
+{{ stats_card(
+"Average SLA",
+dashboard.sla,
+"bi bi-clock"
+) }}
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
+{% block scripts %}
+
+<script src="{{ url_for(
+'static',
+filename='js/county.js') }}">
+</script>
+
+{% endblock %}

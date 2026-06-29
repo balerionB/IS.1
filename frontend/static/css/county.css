@@ -1,0 +1,62 @@
+/* ==========================================
+County Calendar
+========================================== */
+
+#countyCalendar{
+
+    min-height:750px;
+
+}
+
+/* Card spacing */
+
+.fc{
+
+    font-family:Inter,sans-serif;
+
+}
+
+/* Calendar header */
+
+.fc-toolbar-title{
+
+    font-size:1.4rem;
+
+    font-weight:600;
+
+}
+
+/* Event styling */
+
+.fc-event{
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+/* Hover animation */
+
+.fc-event:hover{
+
+    transform:scale(1.02);
+
+    transition:0.2s;
+
+}
+/* ===========================================
+Performance Dashboard
+=========================================== */
+
+canvas{
+
+    max-width:100%;
+
+}
+
+.card-custom{
+
+    margin-bottom:20px;
+
+}

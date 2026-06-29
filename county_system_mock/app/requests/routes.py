@@ -179,3 +179,38 @@ if not success:
     print(
         "Unable to notify PS-SRMS."
     )
+
+@county_request.route("/calendar")
+@login_required
+@roles_required("County Manager", "County Officer")
+def calendar():
+
+    return render_template(
+
+        "county/calendar.html"
+
+    )
+@county.route("/performance")
+@login_required
+@roles_required("County Manager","County Officer")
+def performance():
+
+    metrics={
+
+        "completed":524,
+
+        "sla":"2.1 Days",
+
+        "pending":42,
+
+        "compliance":"97%"
+
+    }
+
+    return render_template(
+
+        "county/performance.html",
+
+        metrics=metrics
+
+    )

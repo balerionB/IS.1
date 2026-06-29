@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block scripts %}
+
+<script src="{{ url_for(
+'static',
+filename='js/county.js') }}">
+</script>
+
+{% endblock %}
+{% extends "layouts/base.html" %}
+
+{% from "macros/cards.html" import stats_card %}
+
+{% block title %}
+County Performance Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- =======================================
+    Page Header
+    ======================================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                County Performance Dashboard
+
+            </h2>
+
+            <p class="text-muted">
+
+                Operational performance and service delivery analytics.
+
+            </p>
+
+        </div>
+
+        <button class="btn btn-primary-custom">
+
+            <i class="bi bi-download"></i>
+
+            Export Report
+
+        </button>
+
+    </div>
+
+    <!-- =======================================
+    KPI Cards
+    ======================================== -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-lg-3">
+
+            {{ stats_card(
+            "Requests Completed",
+            metrics.completed,
+            "bi bi-check-circle-fill"
+            ) }}
+
+        </div>
+
+        <div class="col-lg-3">
+
+            {{ stats_card(
+            "Average SLA",
+            metrics.sla,
+            "bi bi-clock-history"
+            ) }}
+
+        </div>
+
+        <div class="col-lg-3">
+
+            {{ stats_card(
+            "Pending",
+            metrics.pending,
+            "bi bi-hourglass"
+            ) }}
+
+        </div>
+
+        <div class="col-lg-3">
+
+            {{ stats_card(
+            "Compliance",
+            metrics.compliance,
+            "bi bi-graph-up"
+            ) }}
+
+        </div>
+
+    </div>
+
+    <!-- =======================================
+    Charts
+    ======================================== -->
+
+    <div class="row">
+
+        <div class="col-lg-8">
+
+            <div class="card-custom p-4 mb-4">
+
+                <h5>
+
+                    Monthly Requests
+
+                </h5>
+
+                <canvas id="monthlyChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card-custom p-4 mb-4">
+
+                <h5>
+
+                    Request Categories
+
+                </h5>
+
+                <canvas id="categoryChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <div class="card-custom p-4">
+
+                <h5>
+
+                    Officer Performance
+
+                </h5>
+
+                <canvas id="officerChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="card-custom p-4">
+
+                <h5>
+
+                    SLA Compliance
+
+                </h5>
+
+                <canvas id="slaChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for(
+'static',
+filename='js/county.js') }}"></script>
+
+{% endblock %}
+</body>
+</html>

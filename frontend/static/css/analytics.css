@@ -1,0 +1,29 @@
+/* ==========================================
+Analytics Dashboard
+========================================== */
+
+.chart-card{
+
+    background:#fff;
+
+    border-radius:14px;
+
+    padding:20px;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+
+}
+
+.analytics-kpi{
+
+    min-height:120px;
+
+}
+
+.insight-box{
+
+    border-left:5px solid #0d6efd;
+
+    padding-left:18px;
+
+}

@@ -1,0 +1,45 @@
+<div class="card-custom p-4">
+
+<h5>
+
+Department Performance
+
+</h5>
+
+{% for department in departments %}
+
+<div class="mt-4">
+
+<div class="d-flex justify-content-between">
+
+<span>
+
+{{ department.name }}
+
+</span>
+
+<strong>
+
+{{ department.performance }}%
+
+</strong>
+
+</div>
+
+<div class="progress mt-2">
+
+<div
+
+class="progress-bar"
+
+style="width:{{ department.performance }}%">
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>

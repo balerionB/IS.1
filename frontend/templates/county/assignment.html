@@ -1,0 +1,38 @@
+<form>
+
+<label>
+
+Assign Officer
+
+</label>
+
+<select class="form-select">
+
+{% for officer in officers %}
+
+<option value="{{ officer.id }}">
+
+{{ officer.name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<button
+class="btn btn-primary-custom mt-3">
+
+Assign
+
+</button>
+
+</form>
+{% block scripts %}
+
+<script src="{{ url_for(
+'static',
+filename='js/county.js') }}">
+</script>
+
+{% endblock %}

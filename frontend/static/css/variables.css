@@ -1,0 +1,41 @@
+/*=================================================
+    PS-SRMS Design System Variables
+    These variables centralize the application's
+    colors, typography, spacing, and styling.
+==================================================*/
+
+:root{
+
+    /* Primary Brand Colors */
+    --primary:#0052CC;
+    --secondary:#36B37E;
+    --accent:#00B8D9;
+
+    /* Status Colors */
+    --success:#36B37E;
+    --warning:#FFAB00;
+    --danger:#DE350B;
+
+    /* Background Colors */
+    --background:#F5F7FA;
+    --surface:#FFFFFF;
+
+    /* Text Colors */
+    --text:#172B4D;
+    --text-light:#6B778C;
+
+    /* Borders */
+    --border:#DFE1E6;
+
+    /* Shadows */
+    --shadow-sm:0 2px 6px rgba(0,0,0,.08);
+    --shadow-md:0 6px 18px rgba(0,0,0,.12);
+    --shadow-lg:0 12px 28px rgba(0,0,0,.15);
+
+    /* Border Radius */
+    --radius:14px;
+
+    /* Animation Speed */
+    --transition:.3s ease;
+
+}
