@@ -1,0 +1,70 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+County Calendar
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                County Calendar
+
+            </h2>
+
+            <p class="text-muted">
+
+                Manage inspections, deadlines and assigned requests.
+
+            </p>
+
+        </div>
+
+        <button class="btn btn-primary-custom">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Schedule Event
+
+        </button>
+
+    </div>
+
+    <!-- Calendar Card -->
+
+    <div class="card-custom p-4">
+
+        <div id="countyCalendar"></div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script
+src="{{ url_for(
+'static',
+filename='js/county.js') }}">
+</script>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for(
+'static',
+filename='js/county.js') }}">
+</script>
+
+{% endblock %}

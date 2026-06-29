@@ -1,0 +1,38 @@
+<!-- ========================================
+Recent Activity Feed
+Shows recent actions performed in the system.
+========================================= -->
+
+<div class="card-custom p-4">
+
+    <h5 class="mb-4">
+
+        Recent Activity
+
+    </h5>
+
+    <ul class="list-group list-group-flush">
+
+        {% for activity in activities %}
+
+        <li class="list-group-item">
+
+            <div class="fw-semibold">
+
+                {{ activity.title }}
+
+            </div>
+
+            <small class="text-muted">
+
+                {{ activity.time }}
+
+            </small>
+
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+</div>

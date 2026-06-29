@@ -1,0 +1,435 @@
+{% extends "layouts/base.html" %}
+
+{% from "macros/cards.html" import stats_card %}
+
+{% block title %}
+Request Details
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- ===============================
+         Page Header
+    ================================ -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                Request {{ request.reference }}
+
+            </h2>
+
+            <p class="text-muted">
+
+                Complete request information and processing panel.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <span class="badge bg-success fs-6">
+
+                {{ request.status }}
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <!-- ==========================================
+             LEFT COLUMN
+        =========================================== -->
+
+        <div class="col-lg-8">
+
+            <!-- Request Summary -->
+
+            <div class="card-custom p-4 mb-4">
+
+                <h4 class="mb-4">
+
+                    Request Summary
+
+                </h4>
+
+                <table class="table table-borderless">
+
+                    <tr>
+
+                        <th width="220">
+
+                            Reference
+
+                        </th>
+
+                        <td>
+
+                            {{ request.reference }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Title
+
+                        </th>
+
+                        <td>
+
+                            {{ request.title }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Department
+
+                        </th>
+
+                        <td>
+
+                            {{ request.department }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Priority
+
+                        </th>
+
+                        <td>
+
+                            <span class="badge bg-danger">
+
+                                {{ request.priority }}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Submitted
+
+                        </th>
+
+                        <td>
+
+                            {{ request.created_at }}
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <!-- Citizen Information -->
+
+            <div class="card-custom p-4 mb-4">
+
+                <h4>
+
+                    Citizen Information
+
+                </h4>
+
+                <hr>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <strong>Name</strong>
+
+                        <p>{{ request.citizen.full_name }}</p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <strong>Email</strong>
+
+                        <p>{{ request.citizen.email }}</p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <strong>Phone</strong>
+
+                        <p>{{ request.citizen.phone }}</p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <strong>ID Number</strong>
+
+                        <p>{{ request.citizen.national_id }}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Description -->
+
+            <div class="card-custom p-4 mb-4">
+
+                <h4>
+
+                    Description
+
+                </h4>
+
+                <hr>
+
+                <p>
+
+                    {{ request.description }}
+
+                </p>
+
+            </div>
+
+            <!-- Supporting Documents -->
+
+            <div class="card-custom p-4 mb-4">
+
+                <h4>
+
+                    Supporting Documents
+
+                </h4>
+
+                <hr>
+
+                {% if request.attachments %}
+
+                    <ul class="list-group">
+
+                        {% for file in request.attachments %}
+
+                        <li class="list-group-item d-flex justify-content-between">
+
+                            {{ file.filename }}
+
+                            <a
+                            href="{{ file.download_url }}"
+                            class="btn btn-sm btn-outline-primary">
+
+                                Download
+
+                            </a>
+
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                {% else %}
+
+                    <div class="alert alert-warning">
+
+                        No supporting documents uploaded.
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             RIGHT COLUMN
+        =========================================== -->
+
+        <div class="col-lg-4">
+
+            <!-- Assigned Officer -->
+
+            <div class="card-custom p-4 mb-4">
+
+                <h5>
+
+                    Assignment
+
+                </h5>
+
+                <hr>
+
+                <strong>Officer</strong>
+
+                <p>
+
+                    {{ request.assigned_officer }}
+
+                </p>
+
+                <strong>Department</strong>
+
+                <p>
+
+                    {{ request.department }}
+
+                </p>
+
+            </div>
+
+            <!-- Officer Notes -->
+
+            <div class="card-custom p-4 mb-4">
+
+                <h5>
+
+                    Officer Notes
+
+                </h5>
+
+                <hr>
+
+                <textarea
+                rows="6"
+                class="form-control"
+                placeholder="Write internal notes..."></textarea>
+
+                <button
+                class="btn btn-primary-custom mt-3 w-100">
+
+                    Save Notes
+
+                </button>
+
+            </div>
+
+            <!-- Actions -->
+
+            <div class="card-custom p-4 mb-4">
+
+                <h5>
+
+                    Actions
+
+                </h5>
+
+                <hr>
+
+                <a
+                href="{{ url_for('county.update_status', id=request.id) }}"
+                class="btn btn-success w-100 mb-2">
+
+                    Update Status
+
+                </a>
+
+                <a
+                href="{{ url_for('county.assignment', id=request.id) }}"
+                class="btn btn-warning w-100 mb-2">
+
+                    Reassign Officer
+
+                </a>
+
+                <button
+                class="btn btn-danger w-100">
+
+                    Escalate Request
+
+                </button>
+
+            </div>
+
+            <!-- Timeline -->
+
+            <div class="card-custom p-4">
+
+                <h5>
+
+                    Status Timeline
+
+                </h5>
+
+                <hr>
+
+                <ul class="timeline">
+
+                    {% for event in request.timeline %}
+
+                    <li>
+
+                        <strong>
+
+                            {{ event.status }}
+
+                        </strong>
+
+                        <br>
+
+                        <small>
+
+                            {{ event.date }}
+
+                        </small>
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static',
+filename='js/county.js') }}"></script>
+
+{% endblock %}
+{% block scripts %}
+
+<script src="{{ url_for(
+'static',
+filename='js/county.js') }}">
+</script>
+
+{% endblock %}

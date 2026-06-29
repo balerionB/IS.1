@@ -1,0 +1,131 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Submit Request
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<div class="card-custom p-5">
+
+<h2>
+
+Submit New Service Request
+
+</h2>
+
+<form id="requestForm">
+
+<div class="mb-3">
+
+<label>
+
+Title
+
+</label>
+
+<input
+id="title"
+class="form-control"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Department
+
+</label>
+
+<select
+id="department"
+class="form-select">
+
+<option value="">Choose Department</option>
+
+{% for department in departments %}
+
+<option value="{{ department.id }}">
+
+{{ department.name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Priority
+
+</label>
+
+<select
+id="priority"
+class="form-select">
+
+<option>Low</option>
+
+<option>Medium</option>
+
+<option>High</option>
+
+<option>Critical</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Description
+
+</label>
+
+<textarea
+id="description"
+rows="6"
+class="form-control"></textarea>
+
+</div>
+
+<div class="mb-4">
+
+<label>
+
+Supporting Documents
+
+</label>
+
+<input
+type="file"
+multiple
+class="form-control">
+
+</div>
+
+<button
+class="btn btn-primary-custom">
+
+Submit Request
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="card-custom p-4">
+
+<div class="d-flex justify-content-between mb-4">
+
+<h3>
+
+Assigned Requests
+
+</h3>
+
+<button class="btn btn-primary-custom">
+
+Refresh
+
+</button>
+
+</div>
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>Reference</th>
+
+<th>Citizen</th>
+
+<th>Status</th>
+
+<th>Priority</th>
+
+<th>SLA</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for request in requests %}
+
+<tr>
+
+<td>{{ request.reference }}</td>
+
+<td>{{ request.citizen }}</td>
+
+<td>
+
+<span class="status status-success">
+
+{{ request.status }}
+
+</span>
+
+</td>
+
+<td>{{ request.priority }}</td>
+
+<td>{{ request.sla }}</td>
+
+<td>
+
+<a
+class="btn btn-sm btn-outline-primary"
+href="{{ url_for('county.request_details',
+id=request.id) }}">
+
+Open
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}
+{% block scripts %}
+
+<script src="{{ url_for(
+'static',
+filename='js/county.js') }}">
+</script>
+
+{% endblock %}

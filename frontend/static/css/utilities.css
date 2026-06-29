@@ -1,0 +1,39 @@
+/*==================================
+Utility Classes
+===================================*/
+
+.shadow{
+
+    box-shadow:var(--shadow-md);
+
+}
+
+.rounded-card{
+
+    border-radius:var(--radius);
+
+}
+
+.bg-white{
+
+    background:white;
+
+}
+
+.transition{
+
+    transition:var(--transition);
+
+}
+
+.text-primary{
+
+    color:var(--primary);
+
+}
+
+.text-secondary{
+
+    color:var(--secondary);
+
+}

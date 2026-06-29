@@ -1,0 +1,75 @@
+<form>
+
+<label>
+
+Status
+
+</label>
+
+<select
+class="form-select">
+
+<option>
+
+SUBMITTED
+
+</option>
+
+<option>
+
+ASSIGNED
+
+</option>
+
+<option>
+
+IN_PROGRESS
+
+</option>
+
+<option>
+
+PENDING_INFORMATION
+
+</option>
+
+<option>
+
+RESOLVED
+
+</option>
+
+<option>
+
+CLOSED
+
+</option>
+
+</select>
+
+<label class="mt-3">
+
+Comment
+
+</label>
+
+<textarea
+rows="4"
+class="form-control"></textarea>
+
+<button
+class="btn btn-success mt-4">
+
+Save Update
+
+</button>
+
+</form>
+{% block scripts %}
+
+<script src="{{ url_for(
+'static',
+filename='js/county.js') }}">
+</script>
+
+{% endblock %}

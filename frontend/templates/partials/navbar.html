@@ -1,0 +1,112 @@
+<!-- ======================================================
+     Global Navigation Bar
+     Appears on every authenticated page.
+====================================================== -->
+
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+
+    <div class="container-fluid">
+
+        <!-- Sidebar toggle button (visible on small screens) -->
+        <button
+            class="btn btn-outline-primary d-lg-none me-3"
+            id="sidebarToggle">
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+        <!-- System logo -->
+        <a class="navbar-brand fw-bold text-primary" href="#">
+
+            PS-SRMS
+
+        </a>
+
+        <!-- Search -->
+        <form class="d-none d-md-flex ms-4 flex-grow-1">
+
+            <input
+                class="form-control"
+                type="search"
+                placeholder="Search requests, citizens, departments...">
+
+        </form>
+
+        <!-- Right section -->
+        <div class="d-flex align-items-center gap-3">
+
+            <!-- Notification Bell -->
+            <div class="position-relative">
+
+                <button class="btn btn-light">
+
+                    <i class="bi bi-bell fs-5"></i>
+
+                </button>
+
+                <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
+                    5
+
+                </span>
+
+            </div>
+
+            <!-- User Dropdown -->
+            <div class="dropdown">
+
+                <button
+                class="btn btn-light dropdown-toggle"
+                data-bs-toggle="dropdown">
+
+                    <i class="bi bi-person-circle"></i>
+
+                    Supervisor
+
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
+                    <li>
+
+                        <a class="dropdown-item" href="#">
+
+                            Profile
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="dropdown-item" href="#">
+
+                            Settings
+
+                        </a>
+
+                    </li>
+
+                    <li><hr class="dropdown-divider"></li>
+
+                    <li>
+
+                        <a class="dropdown-item text-danger" href="#">
+
+                            Logout
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>

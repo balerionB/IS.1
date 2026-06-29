@@ -1,0 +1,146 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="card-custom p-4">
+
+<div class="d-flex justify-content-between mb-4">
+
+<h3>
+
+Service Requests
+
+</h3>
+
+<a
+class="btn btn-primary-custom">
+
+Export CSV
+
+</a>
+
+</div>
+
+<div class="row mb-4">
+
+<div class="col-md-4">
+
+{% include "partials/search-bar.html" %}
+
+</div>
+
+<div class="col-md-3">
+
+<select class="form-select">
+
+<option>All Statuses</option>
+
+<option>Submitted</option>
+
+<option>Assigned</option>
+
+<option>In Progress</option>
+
+<option>Resolved</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3">
+
+<select class="form-select">
+
+<option>All Departments</option>
+
+</select>
+
+</div>
+
+</div>
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>Reference</th>
+
+<th>Citizen</th>
+
+<th>Department</th>
+
+<th>Status</th>
+
+<th>SLA</th>
+
+<th></th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for request in requests %}
+
+<tr>
+
+<td>
+
+{{ request.reference }}
+
+</td>
+
+<td>
+
+{{ request.citizen }}
+
+</td>
+
+<td>
+
+{{ request.department }}
+
+</td>
+
+<td>
+
+<span class="status status-success">
+
+{{ request.status }}
+
+</span>
+
+</td>
+
+<td>
+
+{{ request.sla }}
+
+</td>
+
+<td>
+
+<a
+href="{{ url_for('governance.request_details',
+id=request.id) }}">
+
+View
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

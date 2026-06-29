@@ -1,0 +1,230 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+PS-SRMS | Public Service Request Management System
+{% endblock %}
+
+{% block content %}
+
+<!-- ===========================
+Hero Section
+============================ -->
+
+<section class="hero-section py-5">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<!-- Left Side -->
+
+<div class="col-lg-6">
+
+<span class="badge bg-primary mb-3">
+
+Digital Government Platform
+
+</span>
+
+<h1 class="display-4 fw-bold">
+
+Public Service Request Management System
+
+</h1>
+
+<p class="lead text-muted mt-4">
+
+Submit, monitor and track government service requests
+through one secure platform.
+
+</p>
+
+<div class="mt-4">
+
+<a href="/login"
+class="btn btn-primary-custom me-3">
+
+Login
+
+</a>
+
+<a href="/register"
+class="btn btn-outline-primary">
+
+Register
+
+</a>
+
+</div>
+
+</div>
+
+<!-- Right Side -->
+
+<div class="col-lg-6 text-center">
+
+<img
+src="{{ url_for('static',
+filename='images/hero-illustration.svg') }}"
+class="img-fluid">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+Statistics
+============================ -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+{% set title="Requests Processed" %}
+{% set value="24,520+" %}
+{% set icon="bi bi-folder-check" %}
+{% include "partials/stats-card.html" %}
+
+</div>
+
+<div class="col-md-3">
+
+{% set title="County Offices" %}
+{% set value="47" %}
+{% set icon="bi bi-building" %}
+{% include "partials/stats-card.html" %}
+
+</div>
+
+<div class="col-md-3">
+
+{% set title="Average Resolution" %}
+{% set value="2.4 Days" %}
+{% set icon="bi bi-clock-history" %}
+{% include "partials/stats-card.html" %}
+
+</div>
+
+<div class="col-md-3">
+
+{% set title="Citizen Satisfaction" %}
+{% set value="96%" %}
+{% set icon="bi bi-emoji-smile" %}
+{% include "partials/stats-card.html" %}
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+Features
+============================ -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2>
+
+Why Use PS-SRMS?
+
+</h2>
+
+<p class="text-muted">
+
+Modern digital governance focused on transparency
+and accountability.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-lg-4">
+
+<div class="card-custom p-4 h-100">
+
+<i class="bi bi-lightning-charge fs-1 text-primary"></i>
+
+<h4 class="mt-3">
+
+Fast Processing
+
+</h4>
+
+<p>
+
+Automated workflows reduce processing delays.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card-custom p-4 h-100">
+
+<i class="bi bi-shield-check fs-1 text-success"></i>
+
+<h4 class="mt-3">
+
+Secure Platform
+
+</h4>
+
+<p>
+
+Role-based access control and audit logging.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card-custom p-4 h-100">
+
+<i class="bi bi-bar-chart-line fs-1 text-info"></i>
+
+<h4 class="mt-3">
+
+Real-time Tracking
+
+</h4>
+
+<p>
+
+Track request progress from submission to closure.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

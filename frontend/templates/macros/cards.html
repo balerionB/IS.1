@@ -1,0 +1,21 @@
+{% macro stats_card(title, value, icon) %}
+
+<div class="card-custom p-4">
+
+    <div class="d-flex justify-content-between">
+
+        <div>
+
+            <small>{{ title }}</small>
+
+            <h2>{{ value }}</h2>
+
+        </div>
+
+        <i class="{{ icon }} fs-2 text-primary"></i>
+
+    </div>
+
+</div>
+
+{% endmacro %}

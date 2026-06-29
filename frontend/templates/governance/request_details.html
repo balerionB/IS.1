@@ -1,0 +1,110 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Request Details
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">
+
+        Request {{ request.reference }}
+
+    </h2>
+
+    <!-- Bootstrap Tabs -->
+    <ul class="nav nav-tabs">
+
+        <li class="nav-item">
+
+            <a class="nav-link active"
+               data-bs-toggle="tab"
+               href="#overview">
+
+                Overview
+
+            </a>
+
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link"
+               data-bs-toggle="tab"
+               href="#timeline">
+
+                Timeline
+
+            </a>
+
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link"
+               data-bs-toggle="tab"
+               href="#audit">
+
+                Audit Log
+
+            </a>
+
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link"
+               data-bs-toggle="tab"
+               href="#documents">
+
+                Documents
+
+            </a>
+
+        </li>
+
+    </ul>
+
+    <!-- Tab Content -->
+
+    <div class="tab-content mt-4">
+
+        <div
+        class="tab-pane fade show active"
+        id="overview">
+
+            <!-- Overview information -->
+
+        </div>
+
+        <div
+        class="tab-pane fade"
+        id="timeline">
+
+            <!-- Timeline -->
+
+        </div>
+
+        <div
+        class="tab-pane fade"
+        id="audit">
+
+            <!-- Audit Log -->
+
+        </div>
+
+        <div
+        class="tab-pane fade"
+        id="documents">
+
+            <!-- Documents -->
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
