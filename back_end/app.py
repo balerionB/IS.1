@@ -2,13 +2,15 @@
 from flask import render_template, Flask, Config
 from flask_limiter.util import get_remote_address
 
-from back_end.app import create_app
-from back_end.app.extensions import db
+from app import create_app
+from app.extensions import db
 
 # Create Flask application instance.
 app = create_app()
 
-
+@app.route("/")
+def home():
+    return render_template("landing/index.html")
 # Run application only if this file is executed directly.
 if __name__ == "__main__":
 
@@ -61,6 +63,7 @@ def server_error(error):
     return render_template(
         "errors/500.html"
     ),500
+
 app = Flask(__name__)
 
 app.config.from_object(Config)

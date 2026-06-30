@@ -7,10 +7,16 @@ from flask import request
 from flask import jsonify
 
 # Authentication service.
-from back_end.app.auth.services import authenticate_user
+import app.auth.services
 
-from back_end.app.models import user
-from back_end.app.requests.routes import form
+import app.models
+import app.requests.routes
+
+import app.models
+
+from app.models import user
+
+import werkzeug.security  # Best practice: imports usually go at the top
 
 # Create blueprint.
 
@@ -35,14 +41,12 @@ def login():
 
     ):
 
-    if result:
-        return jsonify(
-            {
-                "token":
-                    result["token"]
-            }
-        )
-
+        if result:
+            return jsonify(
+                {
+                    "token": result["token"]
+                }
+            )
     return jsonify(
         {
             "message":
@@ -51,11 +55,13 @@ def login():
     ), 401
 
 
+
+
+# ... other code ...
+
 def register():
-import werkzeug.security
-
-user.password = werkzeug.security.generate_password_hash(
-
-    form.password.data
-
-)
+    # All lines below must be indented
+    user.password = werkzeug.security.generate_password_hash(
+        form.password.data
+    )
+    # Add a return statement or further logic here if needed   

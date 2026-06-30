@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from back_end.app.extensions import db
+from app.extensions import db
 
 
 class ServiceRequest(db.Model):

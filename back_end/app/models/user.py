@@ -2,7 +2,7 @@
 from datetime import datetime
 
 # Import database object.
-from back_end.app.extensions import db
+from app.extensions import db
 
 
 class User(db.Model):

@@ -1,23 +1,17 @@
-import requests
-from flask import jsonify
+from flask import Blueprint, jsonify
 from flask_login import login_required
 
-from back_end.app.forms.request_forms import RequestForm
-from back_end.app.services.activity_service import ActivityService
+from app.services.activity_service import ActivityService
+
+requests_bp = Blueprint("requests", __name__)
 
 
-@requests.route("/api/<int:id>/timeline")
+@requests_bp.route("/<int:id>/timeline")
 @login_required
-def timeline(id):
+def get_timeline(id):
     """
     Returns the activity history for a specific request.
     """
-
     return jsonify(
         ActivityService.request_history(id)
     )
-form = RequestForm()
-
-if form.validate_on_submit():
-
-    ...

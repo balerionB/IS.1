@@ -1,6 +1,24 @@
-/*=====================================
-Buttons
-======================================*/
+/* ==========================================
+Cards
+========================================== */
+
+.card-custom{
+
+    background:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* Buttons */
 
 .btn-primary-custom{
 
@@ -10,86 +28,32 @@ Buttons
 
     border:none;
 
-    padding:12px 24px;
+    padding:10px 20px;
 
-    border-radius:12px;
+    border-radius:8px;
+
+    font-weight:600;
 
     transition:.3s;
 
 }
 
-/* Hover animation */
 .btn-primary-custom:hover{
 
-    transform:translateY(-2px);
-
-    background:#003E99;
+    background:var(--primary-dark);
 
 }
 
-/*=====================================
-Cards
-======================================*/
+/* Badge */
 
-.card-custom{
+.badge-status{
 
-    background:white;
-
-    border:none;
-
-    border-radius:16px;
-
-    box-shadow:var(--shadow-sm);
-
-    transition:.3s;
-
-}
-
-/* Card hover effect */
-.card-custom:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:var(--shadow-md);
-
-}
-
-/*=====================================
-Status Chips
-======================================*/
-
-.status{
-
-    padding:5px 12px;
+    padding:8px 14px;
 
     border-radius:30px;
 
     font-size:13px;
 
     font-weight:600;
-
-}
-
-.status-success{
-
-    background:#DFF7EA;
-
-    color:#007A3D;
-
-}
-
-.status-warning{
-
-    background:#FFF5D8;
-
-    color:#A66A00;
-
-}
-
-.status-danger{
-
-    background:#FFE5E0;
-
-    color:#A62F13;
 
 }

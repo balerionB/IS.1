@@ -2,7 +2,7 @@
 from datetime import datetime
 
 # Import database object.
-from back_end.app.extensions import db
+from app.extensions import db
 from datetime import datetime
 
 
@@ -49,7 +49,7 @@ class AuditLog(db.Model):
         back_populates="audit_logs"
     )
 
-class AuditLog(db.Model):
+class changeAuditLog(db.Model):
     """
     Tamper-evident audit trail.
 

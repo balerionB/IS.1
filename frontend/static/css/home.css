@@ -1,0 +1,151 @@
+/* ==========================================
+Hero
+========================================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    background:linear-gradient(
+    135deg,
+    #0B5ED7,
+    #084298);
+
+    color:white;
+
+    padding-top:90px;
+
+}
+
+.hero-tag{
+
+    display:inline-block;
+
+    background:rgba(255,255,255,.15);
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    margin-bottom:20px;
+
+}
+
+.hero-title{
+
+    font-size:58px;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    margin-bottom:25px;
+
+}
+
+.hero-text{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.hero-image{
+
+    animation:float 5s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+@media(max-width:992px){
+
+.hero{
+
+text-align:center;
+
+}
+
+.hero-title{
+
+font-size:42px;
+
+}
+
+.hero-text{
+
+font-size:18px;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.hero-image{
+
+margin-top:40px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.hero-title{
+
+font-size:34px;
+
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+}
+
+.hero-buttons .btn{
+
+width:100%;
+
+}
+
+}
