@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from app.extensions import db
+from back_end.app.extensions import db
 
 
 class ServiceRequest(db.Model):
@@ -75,4 +75,15 @@ class ServiceRequest(db.Model):
     department = db.relationship(
         "Department",
         back_populates="service_requests"
+    )
+    attachments = db.relationship(
+
+        "Attachment",
+
+        back_populates="request",
+
+        lazy=True,
+
+        cascade="all, delete-orphan"
+
     )

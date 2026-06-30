@@ -1,10 +1,12 @@
 from flask import Blueprint
 from flask import jsonify
 from flask import request
+from pika import data
 
-from extensions import db
+from back_end.app.extensions import db
+from back_end.app.models import RequestStatusHistory
 
-from app.models.service_request import (
+from back_end.app.models.service_request import (
     ServiceRequest
 )
 
@@ -65,12 +67,7 @@ for field in required_fields:
     )
 
     db.session.commit()
-    return jsonify(
-        {
-            "message":
-            "Request received."
-        }
-    ), 200
+    return [jsonify({"message":"Request received."}), 200]
 @integration_bp.route(
     "/county/status-update",
     methods=["POST"]

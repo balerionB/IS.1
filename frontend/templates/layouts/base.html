@@ -40,6 +40,12 @@ filename='css/analytics.css') }}">
 
 <div class="text-center text-muted">
 
+    <link
+rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/attachments.css') }}">
+
     <!-- Project Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
@@ -53,6 +59,7 @@ FullCalendar CSS
 <link
 href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
 rel="stylesheet">
+
 </head>
 
 <body>
@@ -78,11 +85,18 @@ rel="stylesheet"
 href="{{ url_for('static',
 filename='css/landing.css') }}">
 
+<link
+rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/notifications.css') }}">
+
 <footer class="bg-white border-top mt-5">
 
 <div class="container py-5">
 
 <div class="row">
+
 
 <div class="col-md-6">
 

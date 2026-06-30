@@ -1,11 +1,16 @@
 # Flask imports.
+from unittest import result
+
+import form
 from flask import Blueprint
 from flask import request
 from flask import jsonify
 
 # Authentication service.
-from app.auth.services import authenticate_user
+from back_end.app.auth.services import authenticate_user
 
+from back_end.app.models import user
+from back_end.app.requests.routes import form
 
 # Create blueprint.
 
@@ -20,32 +25,37 @@ auth_bp = Blueprint(
     methods=["POST"]
 )
 def login():
-    """
-    Login endpoint.
-    """
+    from werkzeug.security import check_password_hash
 
-    data = request.get_json()
+    if check_password_hash(
 
-    email = data.get("email")
-    password = data.get("password")
+            user.password,
 
-    result = authenticate_user(
-        email,
-        password
-    )
+            form.password.data
 
-    if not result:
+    ):
 
+    if result:
         return jsonify(
             {
-                "message":
-                "Invalid credentials"
+                "token":
+                    result["token"]
             }
-        ), 401
+        )
 
     return jsonify(
         {
-            "token":
-            result["token"]
+            "message":
+            "Invalid credentials"
         }
-    )
+    ), 401
+
+
+def register():
+import werkzeug.security
+
+user.password = werkzeug.security.generate_password_hash(
+
+    form.password.data
+
+)
