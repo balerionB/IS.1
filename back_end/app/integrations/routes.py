@@ -3,8 +3,9 @@ from datetime import datetime, timedelta
 from flask import Blueprint, jsonify, request
 
 from app.extensions import db
-from app.models import RequestStatusHistory
+from app.models.request_status_history import RequestStatusHistory
 from app.models.service_request import ServiceRequest
+from app.services.synchronization_service import SynchronizationService
 
 integration_bp = Blueprint(
     "integrations",
@@ -110,3 +111,54 @@ def receive_county_status_update():
             "message": "Status update processed successfully."
         }
     ), 200
+
+
+@integration_bp.route(
+    "/authenticate-citizen",
+    methods=["POST"]
+)
+def authenticate_citizen():
+    """
+    Authenticates a citizen
+    through the simulated
+    eCitizen API.
+    """
+    data = request.get_json() or {}
+    national_id = data.get("national_id")
+
+    sync_service = SynchronizationService()
+    response = sync_service.authenticate_citizen(national_id)
+
+    return jsonify(response)
+
+
+@integration_bp.route(
+    "/send-request",
+    methods=["POST"]
+)
+def send_request():
+    """
+    Sends a PS-SRMS request
+    to the County Office.
+    """
+    request_data = request.get_json() or {}
+
+    sync_service = SynchronizationService()
+    response = sync_service.send_request_to_county(request_data)
+
+    return jsonify(response)
+
+
+@integration_bp.route(
+    "/county-requests",
+    methods=["GET"]
+)
+def county_requests():
+    """
+    Retrieves every request
+    stored by the County Office.
+    """
+    sync_service = SynchronizationService()
+    response = sync_service.get_county_requests()
+
+    return jsonify(response)
