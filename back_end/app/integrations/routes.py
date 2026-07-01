@@ -2,10 +2,13 @@ from flask import Blueprint
 from flask import jsonify
 from flask import request
 
-from extensions import db
+from app.extensions import db
 
 from app.models.service_request import (
     ServiceRequest
+)
+from app.models.request_status_history import (
+    RequestStatusHistory
 )
 
 from datetime import datetime
@@ -26,21 +29,21 @@ def receive_ecitizen_request():
     """
     data = request.get_json()
 
+    required_fields = [
+        "reference_number",
+        "title"
+    ]
 
-required_fields = [
-    "reference_number",
-    "title"
-]
+    for field in required_fields:
 
-for field in required_fields:
+        if field not in data:
+            return jsonify(
+                {
+                    "message":
+                        f"{field} missing"
+                }
+            ), 400
 
-    if field not in data:
-        return jsonify(
-            {
-                "message":
-                    f"{field} missing"
-            }
-        ), 400
     request_record = ServiceRequest(
 
         reference_number=
@@ -134,3 +137,90 @@ def receive_county_status_update():
     return jsonify({
         "message": "Status update processed successfully."
     }), 200
+
+# ==========================================================
+# Synchronization Service
+# ==========================================================
+
+from app.services.synchronization_service import (
+    SynchronizationService
+)
+
+# ==========================================================
+# Service Instance
+# ==========================================================
+
+# Create a reusable synchronization service.
+sync_service = SynchronizationService()
+
+# ==========================================================
+# Authenticate Citizen
+# ==========================================================
+
+@integration_bp.route(
+    "/authenticate-citizen",
+    methods=["POST"]
+)
+def authenticate_citizen():
+    """
+    Authenticates a citizen
+    through the simulated
+    eCitizen API.
+    """
+
+    # Read JSON request.
+    data = request.get_json()
+
+    # Retrieve National ID.
+    national_id = data.get(
+        "national_id"
+    )
+
+    # Call synchronization service.
+    response = sync_service.authenticate_citizen(
+        national_id
+    )
+
+    return jsonify(response)
+
+# ==========================================================
+# Send Request to County Office
+# ==========================================================
+
+@integration_bp.route(
+    "/send-request",
+    methods=["POST"]
+)
+def send_request():
+    """
+    Sends a PS-SRMS request
+    to the County Office.
+    """
+
+    # Read request JSON.
+    request_data = request.get_json()
+
+    # Send request.
+    response = sync_service.send_request_to_county(
+        request_data
+    )
+
+    return jsonify(response)
+
+# ==========================================================
+# Retrieve County Requests
+# ==========================================================
+
+@integration_bp.route(
+    "/county-requests",
+    methods=["GET"]
+)
+def county_requests():
+    """
+    Retrieves every request
+    stored by the County Office.
+    """
+
+    response = sync_service.get_county_requests()
+
+    return jsonify(response)
