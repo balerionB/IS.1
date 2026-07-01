@@ -1,193 +1,85 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
     <title>
 
-        {% block title %}
-
-        PS-SRMS
-
-        {% endblock %}
+        {% block title %}PS-SRMS{% endblock %}
 
     </title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
+
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet">
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
+    <!-- Font Awesome -->
+
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-    rel="stylesheet">
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <!-- Google Font -->
-    <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+    <!-- Project CSS -->
 
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/base.css') }}">
 
-<link
-rel="stylesheet"
-href="{{ url_for(
-'static',
-filename='css/analytics.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/layout.css') }}">
 
-<div class="text-center text-muted">
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/components.css') }}">
 
-    <!-- Project Styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/utilities.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/forms.css') }}">
 
-    <!-- ==========================================
-FullCalendar CSS
-========================================== -->
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/tables.css') }}">
 
-<link
-href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
-rel="stylesheet">
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/dashboard.css') }}">
+    {% block styles %}{% endblock %}
+
 </head>
 
 <body>
 
-{% include 'partials/navbar.html' %}
+    {% include "layouts/sidebar.html" %}
 
-{% include 'partials/sidebar.html' %}
+    <div class="content">
 
-<div class="content">
+        {% include "layouts/navbar.html" %}
 
-{% block content %}
+        {% block content %}
 
-{% endblock %}
+        {% endblock %}
 
-</div>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="{{ url_for('static', filename='js/app.js') }}"></script>
-
-<link
-rel="stylesheet"
-href="{{ url_for('static',
-filename='css/landing.css') }}">
-
-<footer class="bg-white border-top mt-5">
-
-<div class="container py-5">
-
-<div class="row">
-
-<div class="col-md-6">
-
-<h5>
-
-PS-SRMS
-
-</h5>
-
-<p class="text-muted">
-
-Improving public service delivery through
-digital transformation.
-
-</p>
-
-</div>
-
-<div class="col-md-3">
-
-<h6>
-
-Quick Links
-
-</h6>
-
-<ul class="list-unstyled">
-
-<li><a href="#">Home</a></li>
-
-<li><a href="#">Services</a></li>
-
-<li><a href="#">FAQs</a></li>
-
-<li><a href="#">Contact</a></li>
-
-</ul>
-
-</div>
-
-<div class="col-md-3">
-
-<h6>
-
-Support
-
-</h6>
-
-<ul class="list-unstyled">
-
-<li>Email Support</li>
-
-<li>Help Centre</li>
-
-<li>Privacy Policy</li>
-
-<li>Terms of Service</li>
-
-</ul>
-
-</div>
-
-</div>
-
-<hr>
-
-
-© 2026 PS-SRMS. All Rights Reserved.
-
-</div>
-
-</div>
-
-events: "/county/api/calendar-events"
-</footer>
-
-<!-- Bootstrap -->
-
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
 <script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+src="{{ url_for('static',
+filename='js/sidebar.js') }}">
 </script>
+    {% block scripts %}
 
-<!-- Global JavaScript -->
-
-<script src="{{ url_for(
-'static',
-filename='js/app.js') }}">
-</script>
-<!-- ==========================================
-FullCalendar
-========================================== -->
-
-<script
-src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js">
-</script>
-<!--
-Each page can inject its own JavaScript here.
--->
-
-{% block scripts %}
-
-{% endblock %}
+    {% endblock %}
 
 </body>
 
 </html>
-
-

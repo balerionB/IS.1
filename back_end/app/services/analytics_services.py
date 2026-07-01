@@ -5,7 +5,7 @@ Contains all Business Intelligence queries.
 ==========================================
 """
 
-from models.service_request import ServiceRequest
+import models.service_request
 
 
 class AnalyticsService:

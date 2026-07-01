@@ -370,6 +370,64 @@ Request Details
                 </button>
 
             </div>
+            <!-- ==========================================
+Request Attachments
+========================================== -->
+
+<div class="card-custom mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h5 class="mb-0">
+
+            Supporting Documents
+
+        </h5>
+
+        <label
+            for="attachmentInput"
+            class="btn btn-primary-custom">
+
+            Upload File
+
+        </label>
+
+    </div>
+
+    <input
+        id="attachmentInput"
+        type="file"
+        class="d-none"
+        multiple>
+
+    <div
+        id="uploadProgress"
+        class="progress mb-3"
+        style="display:none;">
+
+        <div
+            id="uploadProgressBar"
+            class="progress-bar"
+            role="progressbar"
+            style="width:0%">
+
+            0%
+
+        </div>
+
+    </div>
+
+    <div id="attachmentList">
+
+        <div class="text-muted">
+
+            No attachments uploaded.
+
+        </div>
+
+    </div>
+
+</div>
 
             <!-- Timeline -->
 
@@ -416,7 +474,26 @@ Request Details
     </div>
 
 </div>
+<div class="card-custom mt-4">
 
+    <h5>Activity Timeline</h5>
+
+    <div id="timelineContainer">
+
+        Loading...
+
+    </div>
+
+    <div
+id="requestPage"
+
+data-request-id="{{ request.id }}">
+
+    <!-- Page Content -->
+
+</div>
+
+</div>
 {% endblock %}
 
 {% block scripts %}

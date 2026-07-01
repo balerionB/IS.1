@@ -1,0 +1,217 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2 class="page-title">
+
+Dashboard
+
+</h2>
+
+<div class="dashboard-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-info">
+
+            <h2>245</h2>
+
+            <p>Total Requests</p>
+
+        </div>
+
+        <div
+            class="stat-icon bg-primary">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-info">
+
+            <h2>210</h2>
+
+            <p>Resolved</p>
+
+        </div>
+
+        <div
+            class="stat-icon bg-success">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-info">
+
+            <h2>35</h2>
+
+            <p>Pending</p>
+
+        </div>
+
+        <div
+            class="stat-icon bg-warning">
+
+            <i class="fa-solid fa-clock"></i>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-info">
+
+            <h2>96%</h2>
+
+            <p>SLA Compliance</p>
+
+        </div>
+
+        <div
+            class="stat-icon bg-danger">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="card-custom">
+
+    <h4>
+
+        Recent Requests
+
+    </h4>
+
+    <table class="table">
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Citizen</th>
+
+                <th>Department</th>
+
+                <th>Status</th>
+
+                <th>Date</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>SR-001</td>
+
+                <td>John Doe</td>
+
+                <td>Water</td>
+
+                <td>
+
+                    <span
+                    class="badge bg-success">
+
+                    Resolved
+
+                    </span>
+
+                </td>
+
+                <td>1 Jul 2026</td>
+
+            </tr>
+
+            <tr>
+
+                <td>SR-002</td>
+
+                <td>Jane Smith</td>
+
+                <td>Roads</td>
+
+                <td>
+
+                    <span
+                    class="badge bg-warning text-dark">
+
+                    Pending
+
+                    </span>
+
+                </td>
+
+                <td>2 Jul 2026</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+</div>
+<div class="card-custom">
+
+    <h4>
+
+        Quick Actions
+
+    </h4>
+
+    <div class="d-flex flex-wrap gap-3 mt-3">
+
+        <a href="{{ url_for('requests.create') }}"
+           class="btn btn-primary-custom">
+
+            <i class="fa-solid fa-plus"></i>
+
+            New Request
+
+        </a>
+
+        <a href="{{ url_for('analytics.index') }}"
+           class="btn btn-primary-custom">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Analytics
+
+        </a>
+
+        <a href="{{ url_for('reports.index') }}"
+           class="btn btn-primary-custom">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            Reports
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

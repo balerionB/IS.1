@@ -32,19 +32,10 @@ from app.extensions import (
 # Blueprints
 # ==========================================================
 
-# Authentication routes.
 from app.auth.routes import auth_bp
-
-# Integration routes.
 from app.integrations.routes import integration_bp
-
-# Dashboard routes.
 from app.dashboard.routes import dashboard_bp
-
-# Simulated eCitizen routes.
 from app.ecitizen.routes import ecitizen_bp
-
-# Simulated County Office routes.
 from app.county.routes import county_bp
 
 
@@ -58,27 +49,18 @@ def create_app():
     the Flask application.
     """
 
-    # Create Flask application.
-    app = Flask(__name__)
-
-    # Load configuration.
-    app.config.from_object("config.Config")
-
-    # Initialize extensions.
-    db.init_app(app)
-
-    migrate.init_app(
-        app,
-        db
+    app = Flask(
+        __name__,
+        template_folder="../../frontend/templates",
+        static_folder="../../frontend/static"
     )
 
+    app.config.from_object("config.Config")
+
+    db.init_app(app)
+    migrate.init_app(app, db)
     jwt.init_app(app)
-
     mail.init_app(app)
-
-    # ------------------------------------------------------
-    # Register application blueprints.
-    # ------------------------------------------------------
 
     app.register_blueprint(
         auth_bp,
@@ -105,5 +87,4 @@ def create_app():
         url_prefix="/api/county"
     )
 
-    # Return configured application.
     return app

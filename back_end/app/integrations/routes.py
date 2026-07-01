@@ -1,23 +1,18 @@
-from flask import Blueprint
-from flask import jsonify
-from flask import request
+from datetime import datetime, timedelta
+
+from flask import Blueprint, jsonify, request
 
 from app.extensions import db
-
-from app.models.service_request import (
-    ServiceRequest
-)
-from app.models.request_status_history import (
-    RequestStatusHistory
-)
-
-from datetime import datetime
-from datetime import timedelta
+from app.models.request_status_history import RequestStatusHistory
+from app.models.service_request import ServiceRequest
+from app.services.synchronization_service import SynchronizationService
 
 integration_bp = Blueprint(
     "integrations",
     __name__
 )
+
+
 @integration_bp.route(
     "/ecitizen/request",
     methods=["POST"]
@@ -27,7 +22,7 @@ def receive_ecitizen_request():
     Receives citizen requests
     from eCitizen.
     """
-    data = request.get_json()
+    data = request.get_json() or {}
 
     required_fields = [
         "reference_number",
@@ -35,45 +30,31 @@ def receive_ecitizen_request():
     ]
 
     for field in required_fields:
-
         if field not in data:
             return jsonify(
                 {
-                    "message":
-                        f"{field} missing"
+                    "message": f"{field} missing"
                 }
             ), 400
 
     request_record = ServiceRequest(
-
-        reference_number=
-        data["reference_number"],
-
-        title=
-        data["title"],
-
-        description=
-        data.get(
-            "description"
-        ),
-
+        reference_number=data["reference_number"],
+        title=data["title"],
+        description=data.get("description"),
         status="SUBMITTED",
-
-        sla_deadline=
-        datetime.utcnow()
-        + timedelta(days=7)
-    )
-    db.session.add(
-        request_record
+        sla_deadline=datetime.utcnow() + timedelta(days=7)
     )
 
+    db.session.add(request_record)
     db.session.commit()
+
     return jsonify(
         {
-            "message":
-            "Request received."
+            "message": "Request received."
         }
     ), 200
+
+
 @integration_bp.route(
     "/county/status-update",
     methods=["POST"]
@@ -83,50 +64,41 @@ def receive_county_status_update():
     Receives status updates from the
     County Office System.
     """
+    data = request.get_json() or {}
 
-    # Read the JSON payload.
-    data = request.get_json()
-
-    # Validate required fields.
     required_fields = [
         "reference_number",
         "status"
     ]
 
     for field in required_fields:
-
         if field not in data:
+            return jsonify(
+                {
+                    "message": f"{field} is required."
+                }
+            ), 400
 
-            return jsonify({
-                "message": f"{field} is required."
-            }), 400
-
-    # Find the matching service request.
     request_record = ServiceRequest.query.filter_by(
         reference_number=data["reference_number"]
     ).first()
 
     if request_record is None:
+        return jsonify(
+            {
+                "message": "Request not found."
+            }
+        ), 404
 
-        return jsonify({
-            "message": "Request not found."
-        }), 404
-
-    # Store the previous status before updating.
     previous_status = request_record.status
-
-    # Update to the new status.
     request_record.status = data["status"]
-
-    # Save the change.
     db.session.commit()
 
-    # Record the workflow transition.
     status_history = RequestStatusHistory(
         request_id=request_record.id,
         old_status=previous_status,
         new_status=request_record.status,
-        changed_by=None,          # External system initiated
+        changed_by=None,
         actor_role="COUNTY_SYSTEM",
         reason="Status update received from County Office System"
     )
@@ -134,28 +106,12 @@ def receive_county_status_update():
     db.session.add(status_history)
     db.session.commit()
 
-    return jsonify({
-        "message": "Status update processed successfully."
-    }), 200
+    return jsonify(
+        {
+            "message": "Status update processed successfully."
+        }
+    ), 200
 
-# ==========================================================
-# Synchronization Service
-# ==========================================================
-
-from app.services.synchronization_service import (
-    SynchronizationService
-)
-
-# ==========================================================
-# Service Instance
-# ==========================================================
-
-# Create a reusable synchronization service.
-sync_service = SynchronizationService()
-
-# ==========================================================
-# Authenticate Citizen
-# ==========================================================
 
 @integration_bp.route(
     "/authenticate-citizen",
@@ -167,25 +123,14 @@ def authenticate_citizen():
     through the simulated
     eCitizen API.
     """
+    data = request.get_json() or {}
+    national_id = data.get("national_id")
 
-    # Read JSON request.
-    data = request.get_json()
-
-    # Retrieve National ID.
-    national_id = data.get(
-        "national_id"
-    )
-
-    # Call synchronization service.
-    response = sync_service.authenticate_citizen(
-        national_id
-    )
+    sync_service = SynchronizationService()
+    response = sync_service.authenticate_citizen(national_id)
 
     return jsonify(response)
 
-# ==========================================================
-# Send Request to County Office
-# ==========================================================
 
 @integration_bp.route(
     "/send-request",
@@ -196,20 +141,13 @@ def send_request():
     Sends a PS-SRMS request
     to the County Office.
     """
+    request_data = request.get_json() or {}
 
-    # Read request JSON.
-    request_data = request.get_json()
-
-    # Send request.
-    response = sync_service.send_request_to_county(
-        request_data
-    )
+    sync_service = SynchronizationService()
+    response = sync_service.send_request_to_county(request_data)
 
     return jsonify(response)
 
-# ==========================================================
-# Retrieve County Requests
-# ==========================================================
 
 @integration_bp.route(
     "/county-requests",
@@ -220,7 +158,7 @@ def county_requests():
     Retrieves every request
     stored by the County Office.
     """
-
+    sync_service = SynchronizationService()
     response = sync_service.get_county_requests()
 
     return jsonify(response)

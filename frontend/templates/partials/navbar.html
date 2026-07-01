@@ -109,4 +109,57 @@
 
     </div>
 
+    <!-- ==========================================
+Notification Bell
+========================================== -->
+
+<div class="dropdown me-3">
+
+    <button
+        class="btn btn-light position-relative"
+        id="notificationBell"
+        data-bs-toggle="dropdown">
+
+        <i class="bi bi-bell fs-5"></i>
+
+        <span
+            id="notificationCount"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
+            0
+
+        </span>
+
+    </button>
+
+    <ul
+        class="dropdown-menu dropdown-menu-end"
+        id="notificationDropdown">
+
+        <li class="dropdown-header">
+
+            Notifications
+
+        </li>
+
+        <li>
+
+            <hr class="dropdown-divider">
+
+        </li>
+
+        <div id="notificationList">
+
+            <li class="dropdown-item text-muted">
+
+                No notifications
+
+            </li>
+
+        </div>
+
+    </ul>
+
+</div>
+
 </nav>

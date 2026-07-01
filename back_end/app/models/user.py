@@ -46,7 +46,8 @@ class User(db.Model):
     # SYSTEM
     role = db.Column(
         db.String(30),
-        nullable=False
+        nullable=False,
+        default='citizen'
     )
 
     # Password hash.
@@ -92,3 +93,18 @@ class User(db.Model):
 
 # Used for password hashing.
 import bcrypt
+
+notifications = db.relationship(
+
+    "Notification",
+
+    back_populates="user",
+
+    lazy=True
+
+)
+audit_logs = db.relationship(
+    "AuditLog",
+    back_populates="user",
+    lazy=True
+)

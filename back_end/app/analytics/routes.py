@@ -1,13 +1,13 @@
 from flask import Blueprint, send_file
 from flask import jsonify
 
-import app.auth.decorators
 from flask import Blueprint, render_template
 from flask_login import login_required
 
 from back_end.app.auth.decorators import role_required
 from back_end.app.services.analytics_services import AnalyticsService
 from back_end.app.utils.excel_generator import ExcelGenerator
+from back_end.app.utils.permissions import roles_required
 from back_end.app.utils.report_generator import ReportGenerator
 
 analytics = Blueprint(
@@ -16,7 +16,7 @@ analytics = Blueprint(
 )
 from flask import jsonify
 
-import services.analytics_services
+from back_end.app.services import analytics_services
 @analytics.route("/dashboard")
 @login_required
 def dashboard():
@@ -168,3 +168,12 @@ def insights():
         AnalyticsService.executive_insights()
 
     )
+@analytics.route("/reports")
+@login_required
+@roles_required(
+    "Supervisor",
+    "Administrator"
+)
+def reports():
+
+    ...

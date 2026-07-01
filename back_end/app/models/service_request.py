@@ -76,3 +76,14 @@ class ServiceRequest(db.Model):
         "Department",
         back_populates="service_requests"
     )
+    attachments = db.relationship(
+
+        "Attachment",
+
+        back_populates="request",
+
+        lazy=True,
+
+        cascade="all, delete-orphan"
+
+    )
